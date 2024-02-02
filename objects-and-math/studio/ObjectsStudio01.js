@@ -1,10 +1,46 @@
 // Code your selectRandomEntry function here:
+let idNumbers = [291, 414, 503, 599, 796, 890];
+
+function selectRandomEntry(idArr){
+  let index = Math.floor(Math.random()*idArr.length); 
+  return idArr[index] ;
+}
+
+let callCount = 0;
+let newIdArr = [];
+let crewArr = [];
 
 
 // Code your buildCrewArray function here:
+function buildCrewArray(selectedIdArr , animalArr){
+
+while(idNumbers.length !=0 && callCount < 3 ){
+  
+  let id = selectRandomEntry(idNumbers);
+  
+  if(!newIdArr.includes(id)){
+    newIdArr.push(id); 
+    callCount++;
+  }
+
+}
+
+  for(let i =0; i< animalArr.length;i++){
+    let candidateObj = animalArr[i];
+    for(let j=0; j <selectedIdArr.length;j++){
+        if(candidateObj.astronautID === selectedIdArr[j]){
+          crewArr.push(candidateObj.name);
+        }
+    }
+  }
+  
+
+}
 
 
-let idNumbers = [291, 414, 503, 599, 796, 890];
+
+
+
 
 // Here are the candidates and the 'animals' array:
 let candidateA = {
@@ -53,3 +89,5 @@ let candidateF = {
 let animals = [candidateA,candidateB,candidateC,candidateD,candidateE,candidateF];
 
 // Code your template literal and console.log statements:
+buildCrewArray(newIdArr,animals);
+console.log(`${crewArr[0]}, ${crewArr[1]}, and ${crewArr[2]} are going to space!`);
